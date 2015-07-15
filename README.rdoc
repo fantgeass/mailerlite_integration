@@ -1,0 +1,19 @@
+== README
+
+Mailerlite integration app
+
+
+Files:
+
+/lib/mailerlite_client/mailerlite_client.rb
+/lib/email_integration/email_integration.rb
+/lib/email_integration/mailerlite_integration.rb
+
+
+/spec/integration/lib/mailerlite_client/mailerlite_client_spec.rb
+/spec/lib/email_integration/mailerlite_integration_spec.rb
+
+
+
+Problems:
+Integration tests sometimes red because of connection issues.
