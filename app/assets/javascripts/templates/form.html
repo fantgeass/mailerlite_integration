@@ -1,0 +1,40 @@
+<form name="form" ng-submit="vm.save()" novalidate>
+    <div class="form-group">
+        <label for="service">Service</label>
+        <select id="service" name="service" class="form-control" ng-model="vm.integration.service" required>
+            <option value="">-- choose service --</option>
+            <option ng-repeat="service in vm.services_list" value="{{service.id}}">{{service.name}}</option>
+        </select>
+        <span class="help-block" ng-show="form.service.$invalid && form.service.$dirty">
+            Service is required
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="api_key">API Key</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="api_key" name="api_key" placeholder="API key" ng-model="vm.integration.api_key" required>
+            <span class="input-group-btn">
+                <button ng-click="vm.uploadLists()" class="btn btn-success" ng-disabled="form.service.$invalid" type="button">Upload lists for current api key</button>
+            </span>
+        </div>
+        <span class="help-block" ng-show="form.api_key.$invalid && form.api_key.$dirty">
+          API Key is required
+        </span>
+    </div>
+    <div class="form-group">
+        <label>List</label>
+        <ui-select name="list_id" ng-model="vm.integration.list_id" theme="bootstrap" on-select="vm.setListName($select.selected.name)" required>
+            <ui-select-match placeholder="Select a list...">
+                {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="list.id as list in vm.lists | filter: $select.search">
+                <div ng-bind-html="list.name | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+        <span class="help-block" ng-show="form.list_id.$invalid && form.list_id.$dirty">
+          List is required
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Submit</button>
+</form>

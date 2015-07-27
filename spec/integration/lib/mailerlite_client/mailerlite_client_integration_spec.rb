@@ -45,6 +45,14 @@ RSpec.describe MailerliteClient, type: :integration do
     end
   end
 
+  describe '#lists' do
+    it 'returns 200' do
+      response = subject.lists
+
+      expect(response.status).to be 200
+    end
+  end
+
   describe '#subscriber' do
     context 'when subscriber exists' do
       it 'returns 200' do

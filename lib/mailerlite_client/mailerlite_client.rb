@@ -26,4 +26,8 @@ class MailerliteClient
     http_client.get "lists/#{id}"
   end
 
+  def lists
+    http_client.get 'lists/'
+  end
+
 end

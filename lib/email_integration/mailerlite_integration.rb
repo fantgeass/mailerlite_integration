@@ -35,6 +35,15 @@ class MailerliteIntegration < EmailIntegration
       return false
     end
 
+    def lists(api_key)
+      exceptions_handler do
+        response = client(api_key).lists
+        ActiveSupport::JSON.decode(response.body)["Results"]
+      end
+
+    rescue EmailIntegration::CredentialsError
+      return false
+    end
 
     private
 
